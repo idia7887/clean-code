@@ -1,7 +1,8 @@
 from Models.Match import Match
 
+
 class MatchController:
-    
+
     def __init__(self):
         pass
 
@@ -13,10 +14,9 @@ class MatchController:
             players (list): Une liste de joueurs.
 
         Returns:
-            list: Une liste de paires de joueurs.
+            list:Une liste de paires de joueurs.
         """
         return list(zip(players[::2], players[1::2]))
-
 
     def create_matches(self, pairs):
         """
@@ -36,7 +36,8 @@ class MatchController:
 
     def pair_players(self, sorted_players, played_matches):
         """
-        Appaire les joueurs pour un match, en veillant à ce qu'ils n'aient pas joué ensemble.
+        Appaire les joueurs pour un match,
+        en veillant à ce qu'ils n'aient pas joué ensemble.
 
         Args:
             sorted_players (list): Une liste de joueurs triée par score.
@@ -53,7 +54,9 @@ class MatchController:
             opponent_found = False
 
             # Essayer de trouver un adversaire qu'il n'a pas encore rencontré
-            for idx, potential_opponent in enumerate(unpaired_players):
+            for idx, potential_opponent in enumerate(
+                unpaired_players
+            ):
                 if not self.has_played_together(player1, potential_opponent, played_matches):
                     paired_players.append((player1, potential_opponent))
                     unpaired_players.pop(idx)
@@ -69,7 +72,8 @@ class MatchController:
 
     def has_played_together(self, player1, player2, played_matches):
         """
-        Vérifie si deux joueurs ont déjà joué ensemble dans une liste de matches joués.
+        Vérifie si deux joueurs ont déjà joué ensemble
+         dans une liste de matches joués.
 
         Args:
             player1 (dict): Premier joueur.
@@ -87,4 +91,3 @@ class MatchController:
             if player1_name in players_in_match and player2_name in players_in_match:
                 return True
         return False
-
